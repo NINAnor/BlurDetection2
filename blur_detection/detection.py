@@ -14,8 +14,9 @@ def estimate_blur(image: numpy.array, threshold: int = 100, ksize: int = 1):
         image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
     blur_map = cv2.Laplacian(image, cv2.CV_64F, ksize=ksize)
-    score = numpy.var(blur_map)
-    return blur_map, score, bool(score < threshold)
+    score_var = numpy.var(blur_map)
+    score_max = numpy.max(blur_map)
+    return blur_map, score_var, score_max, bool(score_var < threshold)
 
 
 def pretty_blur_map(blur_map: numpy.array, sigma: int = 5, min_abs: float = 0.5):

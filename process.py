@@ -75,10 +75,10 @@ if __name__ == '__main__':
         else:
             logging.warning('not normalizing image size for consistent scoring!')
 
-        blur_map, score, blurry = estimate_blur(image, threshold=args.threshold, ksize=args.kernel_size)
+        blur_map, score_var, score_max, blurry = estimate_blur(image, threshold=args.threshold, ksize=args.kernel_size)
 
-        logging.info(f'image_path: {image_path} score: {score} blurry: {blurry}')
-        results.append({'input_path': str(image_path), 'score': score, 'blurry': blurry})
+        logging.info(f'image_path: {image_path} score_var: {score_var} score_max: {score_max} blurry: {blurry}')
+        results.append({'input_path': str(image_path), 'score_var': score_var, 'score_max': score_max, 'blurry': blurry})
 
         if args.display:
             cv2.imshow('input', image)
